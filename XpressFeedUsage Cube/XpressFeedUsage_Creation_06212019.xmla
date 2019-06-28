@@ -1,0 +1,925 @@
+<Create xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+    <ObjectDefinition>
+        <Database xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500">
+            <ID>XpressFeedUsage</ID>
+            <Name>XpressFeedUsage</Name>
+            <ddl200:CompatibilityLevel>1100</ddl200:CompatibilityLevel>
+            <Language>1033</Language>
+            <Collation>Latin1_General_CI_AS</Collation>
+            <DataSourceImpersonationInfo>
+                <ImpersonationMode>Default</ImpersonationMode>
+            </DataSourceImpersonationInfo>
+            <Dimensions>
+                <Dimension>
+                    <ID>Dim XF Product Package Tbl</ID>
+                    <Name>Product Package</Name>
+                    <Source xsi:type="DataSourceViewBinding">
+                        <DataSourceViewID>XpressFeedView</DataSourceViewID>
+                    </Source>
+                    <ErrorConfiguration>
+                        <KeyNotFound>ReportAndStop</KeyNotFound>
+                        <KeyDuplicate>ReportAndStop</KeyDuplicate>
+                        <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+                    </ErrorConfiguration>
+                    <Language>1033</Language>
+                    <Collation>Latin1_General_CI_AS</Collation>
+                    <UnknownMemberName>Unknown</UnknownMemberName>
+                    <Attributes>
+                        <Attribute>
+                            <ID>SK Package</ID>
+                            <Name>SK Package</Name>
+                            <Usage>Key</Usage>
+                            <KeyColumns>
+                                <KeyColumn>
+                                    <DataType>Integer</DataType>
+                                    <Source xsi:type="ColumnBinding">
+                                        <TableID>dbo_dim_XF_ProductPackage_tbl</TableID>
+                                        <ColumnID>SK_Package</ColumnID>
+                                    </Source>
+                                </KeyColumn>
+                            </KeyColumns>
+                            <NameColumn>
+                                <DataType>WChar</DataType>
+                                <Source xsi:type="ColumnBinding">
+                                    <TableID>dbo_dim_XF_ProductPackage_tbl</TableID>
+                                    <ColumnID>SK_Package</ColumnID>
+                                </Source>
+                            </NameColumn>
+                            <AttributeRelationships>
+                                <AttributeRelationship>
+                                    <AttributeID>Package Name</AttributeID>
+                                    <Name>Package Name</Name>
+                                </AttributeRelationship>
+                            </AttributeRelationships>
+                            <OrderBy>Key</OrderBy>
+                            <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+                        </Attribute>
+                        <Attribute>
+                            <ID>Product Group Name</ID>
+                            <Name>Product Group Name</Name>
+                            <KeyColumns>
+                                <KeyColumn>
+                                    <DataType>WChar</DataType>
+                                    <DataSize>500</DataSize>
+                                    <Source xsi:type="ColumnBinding">
+                                        <TableID>dbo_dim_XF_ProductPackage_tbl</TableID>
+                                        <ColumnID>ProductGroupName</ColumnID>
+                                    </Source>
+                                </KeyColumn>
+                            </KeyColumns>
+                            <NameColumn>
+                                <DataType>WChar</DataType>
+                                <DataSize>500</DataSize>
+                                <Source xsi:type="ColumnBinding">
+                                    <TableID>dbo_dim_XF_ProductPackage_tbl</TableID>
+                                    <ColumnID>ProductGroupName</ColumnID>
+                                </Source>
+                            </NameColumn>
+                            <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+                        </Attribute>
+                        <Attribute>
+                            <ID>Package Name</ID>
+                            <Name>Package Name</Name>
+                            <KeyColumns>
+                                <KeyColumn>
+                                    <DataType>Integer</DataType>
+                                    <Source xsi:type="ColumnBinding">
+                                        <TableID>dbo_dim_XF_ProductPackage_tbl</TableID>
+                                        <ColumnID>SK_Package</ColumnID>
+                                    </Source>
+                                </KeyColumn>
+                            </KeyColumns>
+                            <NameColumn>
+                                <DataType>WChar</DataType>
+                                <DataSize>500</DataSize>
+                                <Source xsi:type="ColumnBinding">
+                                    <TableID>dbo_dim_XF_ProductPackage_tbl</TableID>
+                                    <ColumnID>PackageName</ColumnID>
+                                </Source>
+                            </NameColumn>
+                            <AttributeRelationships>
+                                <AttributeRelationship>
+                                    <AttributeID>Product Group Name</AttributeID>
+                                    <Name>Product Group Name</Name>
+                                </AttributeRelationship>
+                            </AttributeRelationships>
+                            <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+                        </Attribute>
+                    </Attributes>
+                    <Hierarchies>
+                        <Hierarchy>
+                            <ID>Hierarchy</ID>
+                            <Name>Product Package</Name>
+                            <Levels>
+                                <Level>
+                                    <ID>Product Group Name</ID>
+                                    <Name>Product Group Name</Name>
+                                    <SourceAttributeID>Product Group Name</SourceAttributeID>
+                                </Level>
+                                <Level>
+                                    <ID>Package Name</ID>
+                                    <Name>Package Name</Name>
+                                    <SourceAttributeID>Package Name</SourceAttributeID>
+                                </Level>
+                            </Levels>
+                        </Hierarchy>
+                    </Hierarchies>
+                    <ProactiveCaching>
+                        <SilenceInterval>-PT1S</SilenceInterval>
+                        <Latency>-PT1S</Latency>
+                        <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+                        <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+                        <Source xsi:type="ProactiveCachingInheritedBinding" />
+                    </ProactiveCaching>
+                </Dimension>
+                <Dimension>
+                    <ID>Dim XF SFDC Account Tbl</ID>
+                    <Name>Account</Name>
+                    <Source xsi:type="DataSourceViewBinding">
+                        <DataSourceViewID>XpressFeedView</DataSourceViewID>
+                    </Source>
+                    <ErrorConfiguration>
+                        <KeyNotFound>ReportAndStop</KeyNotFound>
+                        <KeyDuplicate>ReportAndStop</KeyDuplicate>
+                        <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+                    </ErrorConfiguration>
+                    <Language>1033</Language>
+                    <Collation>Latin1_General_CI_AS</Collation>
+                    <UnknownMemberName>Unknown</UnknownMemberName>
+                    <Attributes>
+                        <Attribute>
+                            <ID>SK Account</ID>
+                            <Name>SK Account</Name>
+                            <Usage>Key</Usage>
+                            <KeyColumns>
+                                <KeyColumn>
+                                    <DataType>Integer</DataType>
+                                    <Source xsi:type="ColumnBinding">
+                                        <TableID>dbo_dim_XF_SFDC_Account_tbl</TableID>
+                                        <ColumnID>SK_Account</ColumnID>
+                                    </Source>
+                                </KeyColumn>
+                            </KeyColumns>
+                            <NameColumn>
+                                <DataType>WChar</DataType>
+                                <Source xsi:type="ColumnBinding">
+                                    <TableID>dbo_dim_XF_SFDC_Account_tbl</TableID>
+                                    <ColumnID>SK_Account</ColumnID>
+                                </Source>
+                            </NameColumn>
+                            <AttributeRelationships>
+                                <AttributeRelationship>
+                                    <AttributeID>Account Name</AttributeID>
+                                    <Name>Account Name</Name>
+                                </AttributeRelationship>
+                                <AttributeRelationship>
+                                    <AttributeID>Account Id</AttributeID>
+                                    <Name>Account Id</Name>
+                                </AttributeRelationship>
+                            </AttributeRelationships>
+                            <OrderBy>Key</OrderBy>
+                            <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+                        </Attribute>
+                        <Attribute>
+                            <ID>Account Name</ID>
+                            <Name>Account Name</Name>
+                            <KeyColumns>
+                                <KeyColumn>
+                                    <DataType>WChar</DataType>
+                                    <DataSize>255</DataSize>
+                                    <Source xsi:type="ColumnBinding">
+                                        <TableID>dbo_dim_XF_SFDC_Account_tbl</TableID>
+                                        <ColumnID>AccountName</ColumnID>
+                                    </Source>
+                                </KeyColumn>
+                            </KeyColumns>
+                            <NameColumn>
+                                <DataType>WChar</DataType>
+                                <DataSize>255</DataSize>
+                                <Source xsi:type="ColumnBinding">
+                                    <TableID>dbo_dim_XF_SFDC_Account_tbl</TableID>
+                                    <ColumnID>AccountName</ColumnID>
+                                </Source>
+                            </NameColumn>
+                        </Attribute>
+                        <Attribute>
+                            <ID>Account Id</ID>
+                            <Name>Account Id</Name>
+                            <KeyColumns>
+                                <KeyColumn>
+                                    <DataType>WChar</DataType>
+                                    <DataSize>30</DataSize>
+                                    <Source xsi:type="ColumnBinding">
+                                        <TableID>dbo_dim_XF_SFDC_Account_tbl</TableID>
+                                        <ColumnID>AccountId</ColumnID>
+                                    </Source>
+                                </KeyColumn>
+                            </KeyColumns>
+                            <NameColumn>
+                                <DataType>WChar</DataType>
+                                <DataSize>30</DataSize>
+                                <Source xsi:type="ColumnBinding">
+                                    <TableID>dbo_dim_XF_SFDC_Account_tbl</TableID>
+                                    <ColumnID>AccountId</ColumnID>
+                                </Source>
+                            </NameColumn>
+                        </Attribute>
+                    </Attributes>
+                    <ProactiveCaching>
+                        <SilenceInterval>-PT1S</SilenceInterval>
+                        <Latency>-PT1S</Latency>
+                        <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+                        <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+                        <Source xsi:type="ProactiveCachingInheritedBinding" />
+                    </ProactiveCaching>
+                </Dimension>
+                <Dimension>
+                    <ID>User Package</ID>
+                    <Name>User Package</Name>
+                    <Source xsi:type="DataSourceViewBinding">
+                        <DataSourceViewID>XpressFeedView</DataSourceViewID>
+                    </Source>
+                    <ErrorConfiguration>
+                        <KeyNotFound>ReportAndStop</KeyNotFound>
+                        <KeyDuplicate>ReportAndStop</KeyDuplicate>
+                        <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+                    </ErrorConfiguration>
+                    <Language>1033</Language>
+                    <Collation>Latin1_General_CI_AS</Collation>
+                    <UnknownMemberName>Unknown</UnknownMemberName>
+                    <Attributes>
+                        <Attribute>
+                            <ID>User Package Id</ID>
+                            <Name>SK User Package</Name>
+                            <Usage>Key</Usage>
+                            <KeyColumns>
+                                <KeyColumn>
+                                    <DataType>Integer</DataType>
+                                    <Source xsi:type="ColumnBinding">
+                                        <TableID>dbo_Dim_XF_UserPackageStatus_tbl</TableID>
+                                        <ColumnID>SK_UserPackage</ColumnID>
+                                    </Source>
+                                </KeyColumn>
+                            </KeyColumns>
+                            <NameColumn>
+                                <DataType>WChar</DataType>
+                                <Source xsi:type="ColumnBinding">
+                                    <TableID>dbo_Dim_XF_UserPackageStatus_tbl</TableID>
+                                    <ColumnID>SK_UserPackage</ColumnID>
+                                </Source>
+                            </NameColumn>
+                            <AttributeRelationships>
+                                <AttributeRelationship>
+                                    <AttributeID>Account Status</AttributeID>
+                                    <Name>Account Status</Name>
+                                </AttributeRelationship>
+                                <AttributeRelationship>
+                                    <AttributeID>SK Package</AttributeID>
+                                    <Name>SK Package</Name>
+                                </AttributeRelationship>
+                                <AttributeRelationship>
+                                    <AttributeID>SK User</AttributeID>
+                                    <Name>SK User</Name>
+                                </AttributeRelationship>
+                            </AttributeRelationships>
+                            <OrderBy>Key</OrderBy>
+                            <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+                        </Attribute>
+                        <Attribute>
+                            <ID>Account Status</ID>
+                            <Name>Account Status</Name>
+                            <KeyColumns>
+                                <KeyColumn>
+                                    <DataType>WChar</DataType>
+                                    <DataSize>2</DataSize>
+                                    <Source xsi:type="ColumnBinding">
+                                        <TableID>dbo_Dim_XF_UserPackageStatus_tbl</TableID>
+                                        <ColumnID>AccountStatus</ColumnID>
+                                    </Source>
+                                </KeyColumn>
+                            </KeyColumns>
+                            <NameColumn>
+                                <DataType>WChar</DataType>
+                                <DataSize>2</DataSize>
+                                <Source xsi:type="ColumnBinding">
+                                    <TableID>dbo_Dim_XF_UserPackageStatus_tbl</TableID>
+                                    <ColumnID>AccountStatus</ColumnID>
+                                </Source>
+                            </NameColumn>
+                            <OrderBy>Key</OrderBy>
+                        </Attribute>
+                        <Attribute>
+                            <ID>SK Package</ID>
+                            <Name>SK Package</Name>
+                            <KeyColumns>
+                                <KeyColumn>
+                                    <DataType>Integer</DataType>
+                                    <Source xsi:type="ColumnBinding">
+                                        <TableID>dbo_dim_XF_ProductPackage_tbl</TableID>
+                                        <ColumnID>SK_Package</ColumnID>
+                                    </Source>
+                                </KeyColumn>
+                            </KeyColumns>
+                            <NameColumn>
+                                <DataType>WChar</DataType>
+                                <Source xsi:type="ColumnBinding">
+                                    <TableID>dbo_dim_XF_ProductPackage_tbl</TableID>
+                                    <ColumnID>SK_Package</ColumnID>
+                                </Source>
+                            </NameColumn>
+                            <AttributeRelationships>
+                                <AttributeRelationship>
+                                    <AttributeID>Package Name</AttributeID>
+                                    <Name>Package Name</Name>
+                                </AttributeRelationship>
+                            </AttributeRelationships>
+                            <OrderBy>Key</OrderBy>
+                            <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+                        </Attribute>
+                        <Attribute>
+                            <ID>Product Group Name</ID>
+                            <Name>Product Group Name</Name>
+                            <KeyColumns>
+                                <KeyColumn>
+                                    <DataType>WChar</DataType>
+                                    <DataSize>500</DataSize>
+                                    <Source xsi:type="ColumnBinding">
+                                        <TableID>dbo_dim_XF_ProductPackage_tbl</TableID>
+                                        <ColumnID>ProductGroupName</ColumnID>
+                                    </Source>
+                                </KeyColumn>
+                            </KeyColumns>
+                            <NameColumn>
+                                <DataType>WChar</DataType>
+                                <DataSize>500</DataSize>
+                                <Source xsi:type="ColumnBinding">
+                                    <TableID>dbo_dim_XF_ProductPackage_tbl</TableID>
+                                    <ColumnID>ProductGroupName</ColumnID>
+                                </Source>
+                            </NameColumn>
+                            <OrderBy>Key</OrderBy>
+                            <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+                        </Attribute>
+                        <Attribute>
+                            <ID>Package Name</ID>
+                            <Name>Package Name</Name>
+                            <KeyColumns>
+                                <KeyColumn>
+                                    <DataType>WChar</DataType>
+                                    <DataSize>500</DataSize>
+                                    <Source xsi:type="ColumnBinding">
+                                        <TableID>dbo_dim_XF_ProductPackage_tbl</TableID>
+                                        <ColumnID>PackageName</ColumnID>
+                                    </Source>
+                                </KeyColumn>
+                            </KeyColumns>
+                            <NameColumn>
+                                <DataType>WChar</DataType>
+                                <DataSize>500</DataSize>
+                                <Source xsi:type="ColumnBinding">
+                                    <TableID>dbo_dim_XF_ProductPackage_tbl</TableID>
+                                    <ColumnID>PackageName</ColumnID>
+                                </Source>
+                            </NameColumn>
+                            <AttributeRelationships>
+                                <AttributeRelationship>
+                                    <AttributeID>Product Group Name</AttributeID>
+                                    <Name>Product Group Name</Name>
+                                </AttributeRelationship>
+                            </AttributeRelationships>
+                            <OrderBy>Key</OrderBy>
+                            <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+                        </Attribute>
+                        <Attribute>
+                            <ID>SK User</ID>
+                            <Name>SK User</Name>
+                            <KeyColumns>
+                                <KeyColumn>
+                                    <DataType>Integer</DataType>
+                                    <Source xsi:type="ColumnBinding">
+                                        <TableID>dbo_dim_XF_User_tbl</TableID>
+                                        <ColumnID>SK_User</ColumnID>
+                                    </Source>
+                                </KeyColumn>
+                            </KeyColumns>
+                            <NameColumn>
+                                <DataType>WChar</DataType>
+                                <Source xsi:type="ColumnBinding">
+                                    <TableID>dbo_dim_XF_User_tbl</TableID>
+                                    <ColumnID>SK_User</ColumnID>
+                                </Source>
+                            </NameColumn>
+                            <AttributeRelationships>
+                                <AttributeRelationship>
+                                    <AttributeID>User Name</AttributeID>
+                                    <Name>User Name</Name>
+                                </AttributeRelationship>
+                            </AttributeRelationships>
+                            <OrderBy>Key</OrderBy>
+                            <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+                        </Attribute>
+                        <Attribute>
+                            <ID>User Name</ID>
+                            <Name>User Name</Name>
+                            <KeyColumns>
+                                <KeyColumn>
+                                    <DataType>WChar</DataType>
+                                    <DataSize>100</DataSize>
+                                    <Source xsi:type="ColumnBinding">
+                                        <TableID>dbo_dim_XF_User_tbl</TableID>
+                                        <ColumnID>UserName</ColumnID>
+                                    </Source>
+                                </KeyColumn>
+                            </KeyColumns>
+                            <NameColumn>
+                                <DataType>WChar</DataType>
+                                <DataSize>100</DataSize>
+                                <Source xsi:type="ColumnBinding">
+                                    <TableID>dbo_dim_XF_User_tbl</TableID>
+                                    <ColumnID>UserName</ColumnID>
+                                </Source>
+                            </NameColumn>
+                            <OrderBy>Key</OrderBy>
+                        </Attribute>
+                    </Attributes>
+                    <Hierarchies>
+                        <Hierarchy>
+                            <ID>Hierarchy</ID>
+                            <Name>Product Package</Name>
+                            <Levels>
+                                <Level>
+                                    <ID>Product Group Name</ID>
+                                    <Name>Product Group Name</Name>
+                                    <SourceAttributeID>Product Group Name</SourceAttributeID>
+                                </Level>
+                                <Level>
+                                    <ID>Package Name</ID>
+                                    <Name>Package Name</Name>
+                                    <SourceAttributeID>Package Name</SourceAttributeID>
+                                </Level>
+                            </Levels>
+                        </Hierarchy>
+                    </Hierarchies>
+                    <ProactiveCaching>
+                        <SilenceInterval>-PT1S</SilenceInterval>
+                        <Latency>-PT1S</Latency>
+                        <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+                        <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+                        <Source xsi:type="ProactiveCachingInheritedBinding" />
+                    </ProactiveCaching>
+                </Dimension>
+            </Dimensions>
+            <Cubes>
+                <Cube>
+                    <ID>XpressFeedView</ID>
+                    <Name>XpressFeedUsage</Name>
+                    <Language>1033</Language>
+                    <Collation>Latin1_General_CI_AS</Collation>
+                    <Dimensions>
+                        <Dimension>
+                            <ID>Account</ID>
+                            <Name>Account</Name>
+                            <DimensionID>Dim XF SFDC Account Tbl</DimensionID>
+                            <Attributes>
+                                <Attribute>
+                                    <AttributeID>SK Account</AttributeID>
+                                    <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+                                </Attribute>
+                                <Attribute>
+                                    <AttributeID>Account Name</AttributeID>
+                                </Attribute>
+                                <Attribute>
+                                    <AttributeID>Account Id</AttributeID>
+                                </Attribute>
+                            </Attributes>
+                        </Dimension>
+                        <Dimension>
+                            <ID>User Package</ID>
+                            <Name>User Package</Name>
+                            <DimensionID>User Package</DimensionID>
+                            <Attributes>
+                                <Attribute>
+                                    <AttributeID>User Package Id</AttributeID>
+                                    <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+                                </Attribute>
+                                <Attribute>
+                                    <AttributeID>Account Status</AttributeID>
+                                </Attribute>
+                                <Attribute>
+                                    <AttributeID>SK Package</AttributeID>
+                                    <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+                                </Attribute>
+                                <Attribute>
+                                    <AttributeID>Product Group Name</AttributeID>
+                                    <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+                                </Attribute>
+                                <Attribute>
+                                    <AttributeID>Package Name</AttributeID>
+                                    <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+                                </Attribute>
+                                <Attribute>
+                                    <AttributeID>SK User</AttributeID>
+                                    <AttributeHierarchyVisible>false</AttributeHierarchyVisible>
+                                </Attribute>
+                                <Attribute>
+                                    <AttributeID>User Name</AttributeID>
+                                </Attribute>
+                            </Attributes>
+                            <Hierarchies>
+                                <Hierarchy>
+                                    <HierarchyID>Hierarchy</HierarchyID>
+                                </Hierarchy>
+                            </Hierarchies>
+                        </Dimension>
+                    </Dimensions>
+                    <MeasureGroups>
+                        <MeasureGroup>
+                            <ID>Fact Xpress Feed Usage Tbl</ID>
+                            <Name>Fact Xpress Feed Usage Tbl</Name>
+                            <Measures>
+                                <Measure>
+                                    <ID>Adjusted Hits</ID>
+                                    <Name>Adjusted Hits</Name>
+                                    <DataType>Double</DataType>
+                                    <Source>
+                                        <DataType>Double</DataType>
+                                        <Source xsi:type="ColumnBinding">
+                                            <TableID>dbo_Fact_XpressFeedUsage_tbl</TableID>
+                                            <ColumnID>AdjustedHits</ColumnID>
+                                        </Source>
+                                    </Source>
+                                </Measure>
+                            </Measures>
+                            <StorageMode>Molap</StorageMode>
+                            <ProcessingMode>Regular</ProcessingMode>
+                            <Dimensions>
+                                <Dimension xsi:type="RegularMeasureGroupDimension">
+                                    <CubeDimensionID>Account</CubeDimensionID>
+                                    <Attributes>
+                                        <Attribute>
+                                            <AttributeID>SK Account</AttributeID>
+                                            <KeyColumns>
+                                                <KeyColumn>
+                                                    <DataType>Integer</DataType>
+                                                    <Source xsi:type="ColumnBinding">
+                                                        <TableID>dbo_Fact_XpressFeedUsage_tbl</TableID>
+                                                        <ColumnID>SK_Account</ColumnID>
+                                                    </Source>
+                                                </KeyColumn>
+                                            </KeyColumns>
+                                            <Type>Granularity</Type>
+                                        </Attribute>
+                                        <Attribute>
+                                            <AttributeID>Account Name</AttributeID>
+                                            <KeyColumns>
+                                                <KeyColumn>
+                                                    <DataType>WChar</DataType>
+                                                    <DataSize>255</DataSize>
+                                                    <Source xsi:type="ColumnBinding">
+                                                        <TableID>dbo_dim_XF_SFDC_Account_tbl</TableID>
+                                                        <ColumnID>AccountName</ColumnID>
+                                                    </Source>
+                                                </KeyColumn>
+                                            </KeyColumns>
+                                        </Attribute>
+                                        <Attribute>
+                                            <AttributeID>Account Id</AttributeID>
+                                            <KeyColumns>
+                                                <KeyColumn>
+                                                    <DataType>WChar</DataType>
+                                                    <DataSize>30</DataSize>
+                                                    <Source xsi:type="ColumnBinding">
+                                                        <TableID>dbo_dim_XF_SFDC_Account_tbl</TableID>
+                                                        <ColumnID>AccountId</ColumnID>
+                                                    </Source>
+                                                </KeyColumn>
+                                            </KeyColumns>
+                                        </Attribute>
+                                    </Attributes>
+                                </Dimension>
+                                <Dimension xsi:type="RegularMeasureGroupDimension">
+                                    <CubeDimensionID>User Package</CubeDimensionID>
+                                    <Attributes>
+                                        <Attribute>
+                                            <AttributeID>User Package Id</AttributeID>
+                                            <KeyColumns>
+                                                <KeyColumn>
+                                                    <DataType>Integer</DataType>
+                                                    <Source xsi:type="ColumnBinding">
+                                                        <TableID>dbo_Fact_XpressFeedUsage_tbl</TableID>
+                                                        <ColumnID>SK_UserPackage</ColumnID>
+                                                    </Source>
+                                                </KeyColumn>
+                                            </KeyColumns>
+                                            <Type>Granularity</Type>
+                                        </Attribute>
+                                        <Attribute>
+                                            <AttributeID>Account Status</AttributeID>
+                                            <KeyColumns>
+                                                <KeyColumn>
+                                                    <DataType>WChar</DataType>
+                                                    <DataSize>2</DataSize>
+                                                    <Source xsi:type="ColumnBinding">
+                                                        <TableID>dbo_Dim_XF_UserPackageStatus_tbl</TableID>
+                                                        <ColumnID>AccountStatus</ColumnID>
+                                                    </Source>
+                                                </KeyColumn>
+                                            </KeyColumns>
+                                        </Attribute>
+                                        <Attribute>
+                                            <AttributeID>SK Package</AttributeID>
+                                            <KeyColumns>
+                                                <KeyColumn>
+                                                    <DataType>Integer</DataType>
+                                                    <Source xsi:type="ColumnBinding">
+                                                        <TableID>dbo_dim_XF_ProductPackage_tbl</TableID>
+                                                        <ColumnID>SK_Package</ColumnID>
+                                                    </Source>
+                                                </KeyColumn>
+                                            </KeyColumns>
+                                        </Attribute>
+                                        <Attribute>
+                                            <AttributeID>Product Group Name</AttributeID>
+                                            <KeyColumns>
+                                                <KeyColumn>
+                                                    <DataType>WChar</DataType>
+                                                    <DataSize>500</DataSize>
+                                                    <Source xsi:type="ColumnBinding">
+                                                        <TableID>dbo_dim_XF_ProductPackage_tbl</TableID>
+                                                        <ColumnID>ProductGroupName</ColumnID>
+                                                    </Source>
+                                                </KeyColumn>
+                                            </KeyColumns>
+                                        </Attribute>
+                                        <Attribute>
+                                            <AttributeID>Package Name</AttributeID>
+                                            <KeyColumns>
+                                                <KeyColumn>
+                                                    <DataType>WChar</DataType>
+                                                    <DataSize>500</DataSize>
+                                                    <Source xsi:type="ColumnBinding">
+                                                        <TableID>dbo_dim_XF_ProductPackage_tbl</TableID>
+                                                        <ColumnID>PackageName</ColumnID>
+                                                    </Source>
+                                                </KeyColumn>
+                                            </KeyColumns>
+                                        </Attribute>
+                                        <Attribute>
+                                            <AttributeID>SK User</AttributeID>
+                                            <KeyColumns>
+                                                <KeyColumn>
+                                                    <DataType>Integer</DataType>
+                                                    <Source xsi:type="ColumnBinding">
+                                                        <TableID>dbo_dim_XF_User_tbl</TableID>
+                                                        <ColumnID>SK_User</ColumnID>
+                                                    </Source>
+                                                </KeyColumn>
+                                            </KeyColumns>
+                                        </Attribute>
+                                        <Attribute>
+                                            <AttributeID>User Name</AttributeID>
+                                            <KeyColumns>
+                                                <KeyColumn>
+                                                    <DataType>WChar</DataType>
+                                                    <DataSize>100</DataSize>
+                                                    <Source xsi:type="ColumnBinding">
+                                                        <TableID>dbo_dim_XF_User_tbl</TableID>
+                                                        <ColumnID>UserName</ColumnID>
+                                                    </Source>
+                                                </KeyColumn>
+                                            </KeyColumns>
+                                        </Attribute>
+                                    </Attributes>
+                                </Dimension>
+                            </Dimensions>
+                            <Partitions>
+                                <Partition>
+                                    <ID>Fact Xpress Feed Usage Tbl</ID>
+                                    <Name>Fact Xpress Feed Usage Tbl</Name>
+                                    <Source xsi:type="DsvTableBinding">
+                                        <DataSourceViewID>XpressFeedView</DataSourceViewID>
+                                        <TableID>dbo_Fact_XpressFeedUsage_tbl</TableID>
+                                    </Source>
+                                    <StorageMode>Molap</StorageMode>
+                                    <ProcessingMode>Regular</ProcessingMode>
+                                    <ProactiveCaching>
+                                        <SilenceInterval>-PT1S</SilenceInterval>
+                                        <Latency>-PT1S</Latency>
+                                        <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+                                        <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+                                        <Source xsi:type="ProactiveCachingInheritedBinding" />
+                                    </ProactiveCaching>
+                                </Partition>
+                            </Partitions>
+                            <ProactiveCaching>
+                                <SilenceInterval>-PT1S</SilenceInterval>
+                                <Latency>-PT1S</Latency>
+                                <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+                                <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+                                <Source xsi:type="ProactiveCachingInheritedBinding" />
+                            </ProactiveCaching>
+                        </MeasureGroup>
+                    </MeasureGroups>
+                    <Source>
+                        <DataSourceViewID>XpressFeedView</DataSourceViewID>
+                    </Source>
+                    <ProactiveCaching>
+                        <SilenceInterval>-PT1S</SilenceInterval>
+                        <Latency>-PT1S</Latency>
+                        <SilenceOverrideInterval>-PT1S</SilenceOverrideInterval>
+                        <ForceRebuildInterval>-PT1S</ForceRebuildInterval>
+                        <Source xsi:type="ProactiveCachingInheritedBinding" />
+                    </ProactiveCaching>
+                </Cube>
+            </Cubes>
+            <DataSources>
+                <DataSource xsi:type="RelationalDataSource">
+                    <ID>OLAP</ID>
+                    <Name>OLAP</Name>
+                    <ConnectionString>Provider=SQLNCLI11.1;Data Source=SNLOLAP2;Integrated Security=SSPI;Initial Catalog=OLAP</ConnectionString>
+                    <ImpersonationInfo>
+                        <ImpersonationMode>ImpersonateServiceAccount</ImpersonationMode>
+                    </ImpersonationInfo>
+                    <Timeout>PT0S</Timeout>
+                </DataSource>
+            </DataSources>
+            <DataSourceViews>
+                <DataSourceView>
+                    <ID>XpressFeedView</ID>
+                    <Name>XpressFeedView</Name>
+                    <Annotations>
+                        <Annotation>
+                            <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:SchemaRestriction</Name>
+                        </Annotation>
+                        <Annotation>
+                            <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:RetrieveRelationships</Name>
+                            <Value>true</Value>
+                        </Annotation>
+                    </Annotations>
+                    <DataSourceID>OLAP</DataSourceID>
+                    <Schema>
+                        <xs:schema id="XpressFeedView" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop">
+                            <xs:element name="XpressFeedView" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+                                <xs:complexType>
+                                    <xs:choice minOccurs="0" maxOccurs="unbounded">
+                                        <xs:element name="dbo_dim_XF_ProductPackage_tbl" msprop:DbTableName="dim_XF_ProductPackage_tbl" msprop:FriendlyName="dim_XF_ProductPackage_tbl" msprop:DbSchemaName="dbo" msprop:TableType="Table">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="SK_Package" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:DbColumnName="SK_Package" msprop:FriendlyName="SK_Package" type="xs:int" />
+                                                    <xs:element name="ProductGroupName" msprop:DbColumnName="ProductGroupName" msprop:FriendlyName="ProductGroupName" minOccurs="0">
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:maxLength value="500" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="PackageName" msprop:DbColumnName="PackageName" msprop:FriendlyName="PackageName" minOccurs="0">
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:maxLength value="500" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="dbo_dim_XF_SFDC_Account_tbl" msprop:DbTableName="dim_XF_SFDC_Account_tbl" msprop:FriendlyName="dim_XF_SFDC_Account_tbl" msprop:DbSchemaName="dbo" msprop:TableType="Table">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="SK_Account" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:DbColumnName="SK_Account" msprop:FriendlyName="SK_Account" type="xs:int" />
+                                                    <xs:element name="AccountName" msprop:DbColumnName="AccountName" msprop:FriendlyName="AccountName" minOccurs="0">
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:maxLength value="255" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="AccountId" msprop:DbColumnName="AccountId" msprop:FriendlyName="AccountId" minOccurs="0">
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:maxLength value="30" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="dbo_dim_XF_User_tbl" msprop:DbTableName="dim_XF_User_tbl" msprop:FriendlyName="dim_XF_User_tbl" msprop:DbSchemaName="dbo" msprop:TableType="Table">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="SK_User" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:DbColumnName="SK_User" msprop:FriendlyName="SK_User" type="xs:int" />
+                                                    <xs:element name="UserName" msprop:DbColumnName="UserName" msprop:FriendlyName="UserName" minOccurs="0">
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:maxLength value="100" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="dbo_Fact_XpressFeedUsage_tbl" msprop:DbTableName="Fact_XpressFeedUsage_tbl_New" msprop:FriendlyName="Fact_XpressFeedUsage_tbl" msprop:DbSchemaName="dbo" msprop:TableType="Table">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="AccessedDateKey" msprop:DbColumnName="AccessedDateKey" msprop:FriendlyName="AccessedDateKey" type="xs:int" minOccurs="0" />
+                                                    <xs:element name="SK_User" msprop:DbColumnName="SK_User" msprop:FriendlyName="SK_User" type="xs:int" minOccurs="0" />
+                                                    <xs:element name="SK_Account" msprop:DbColumnName="SK_Account" msprop:FriendlyName="SK_Account" type="xs:int" minOccurs="0" />
+                                                    <xs:element name="SK_Package" msprop:DbColumnName="SK_Package" msprop:FriendlyName="SK_Package" type="xs:int" minOccurs="0" />
+                                                    <xs:element name="AdjustedHits" msprop:DbColumnName="AdjustedHits" type="xs:double" minOccurs="0" />
+                                                    <xs:element name="SK_UserPackage" msprop:DbColumnName="SK_UserPackage" type="xs:int" minOccurs="0" />
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="dbo_Dim_XF_UserPackageStatus_tbl" msprop:DbTableName="Dim_XF_UserPackageStatus_tbl" msprop:FriendlyName="Dim_XF_UserPackageStatus_tbl" msprop:DbSchemaName="dbo" msprop:TableType="Table">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="SK_User" msprop:DbColumnName="SK_User" msprop:FriendlyName="SK_User" type="xs:int" minOccurs="0" />
+                                                    <xs:element name="SK_Package" msprop:DbColumnName="SK_Package" msprop:FriendlyName="SK_Package" type="xs:int" minOccurs="0" />
+                                                    <xs:element name="AccountStatus" msprop:DbColumnName="AccountStatus" msprop:FriendlyName="AccountStatus" minOccurs="0">
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:maxLength value="2" />
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="SK_UserPackage" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:DbColumnName="SK_UserPackage" msprop:FriendlyName="SK_UserPackage" type="xs:int" />
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:choice>
+                                </xs:complexType>
+                                <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+                                    <xs:selector xpath=".//dbo_dim_XF_ProductPackage_tbl" />
+                                    <xs:field xpath="SK_Package" />
+                                </xs:unique>
+                                <xs:unique name="dbo_dim_XF_SFDC_Account_tbl_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+                                    <xs:selector xpath=".//dbo_dim_XF_SFDC_Account_tbl" />
+                                    <xs:field xpath="SK_Account" />
+                                </xs:unique>
+                                <xs:unique name="dbo_dim_XF_User_tbl_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+                                    <xs:selector xpath=".//dbo_dim_XF_User_tbl" />
+                                    <xs:field xpath="SK_User" />
+                                </xs:unique>
+                                <xs:unique name="dbo_Dim_XF_UserPackageStatus_tbl_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+                                    <xs:selector xpath=".//dbo_Dim_XF_UserPackageStatus_tbl" />
+                                    <xs:field xpath="SK_UserPackage" />
+                                </xs:unique>
+                            </xs:element>
+                            <xs:annotation>
+                                <xs:appinfo>
+                                    <msdata:Relationship name="Fact_XpressFeedUsage_tbl-dim_XF_SFDC_Account_tbl" msdata:parent="dbo_dim_XF_SFDC_Account_tbl" msdata:child="dbo_Fact_XpressFeedUsage_tbl" msdata:parentkey="SK_Account" msdata:childkey="SK_Account" msprop:IsLogical="True" msprop:Description="" />
+                                    <msdata:Relationship name="Fact_XpressFeedUsage_tbl-Dim_XF_UserPackageStatus_tbl" msdata:parent="dbo_Dim_XF_UserPackageStatus_tbl" msdata:child="dbo_Fact_XpressFeedUsage_tbl" msdata:parentkey="SK_UserPackage" msdata:childkey="SK_UserPackage" msprop:IsLogical="True" msprop:Description="" />
+                                    <msdata:Relationship name="Dim_XF_UserPackageStatus_tbl-dim_XF_User_tbl" msdata:parent="dbo_dim_XF_User_tbl" msdata:child="dbo_Dim_XF_UserPackageStatus_tbl" msdata:parentkey="SK_User" msdata:childkey="SK_User" msprop:IsLogical="True" msprop:Description="" />
+                                    <msdata:Relationship name="Dim_XF_UserPackageStatus_tbl-dim_XF_ProductPackage_tbl" msdata:parent="dbo_dim_XF_ProductPackage_tbl" msdata:child="dbo_Dim_XF_UserPackageStatus_tbl" msdata:parentkey="SK_Package" msdata:childkey="SK_Package" msprop:IsLogical="True" msprop:Description="" />
+                                </xs:appinfo>
+                            </xs:annotation>
+                        </xs:schema>
+                        <XpressFeedView xmlns="" />
+                    </Schema>
+                </DataSourceView>
+            </DataSourceViews>
+            <Roles>
+                <Role>
+                    <ID>Role</ID>
+                    <Name>Role</Name>
+                    <Members>
+                        <Member>
+                            <Name>CIQINDIA\prateekanand</Name>
+                            <Sid>S-1-5-21-1606980848-764733703-682003330-12828</Sid>
+                        </Member>
+                        <Member>
+                            <Name>CIQINDIA\mmurada</Name>
+                            <Sid>S-1-5-21-1606980848-764733703-682003330-9808</Sid>
+                        </Member>
+                        <Member>
+                            <Name>SNL\haroon_javed</Name>
+                            <Sid>S-1-5-21-27163274-1494356628-895032878-80601</Sid>
+                        </Member>
+                        <Member>
+                            <Name>SNL\prashantg</Name>
+                            <Sid>S-1-5-21-27163274-1494356628-895032878-51669</Sid>
+                        </Member>
+                        <Member>
+                            <Name>CAPIQCORP\jzeralli</Name>
+                            <Sid>S-1-5-21-1409082233-413027322-1801674531-34750</Sid>
+                        </Member>
+                        <Member>
+                            <Name>MHF\priyanka_shetty</Name>
+                            <Sid>S-1-5-21-1390067357-220523388-725345543-1799128</Sid>
+                        </Member>
+                    </Members>
+                </Role>
+            </Roles>
+            <DatabasePermissions>
+                <DatabasePermission>
+                    <ID>DatabasePermission</ID>
+                    <Name>DatabasePermission</Name>
+                    <RoleID>Role</RoleID>
+                    <ReadDefinition>Allowed</ReadDefinition>
+                    <Read>Allowed</Read>
+                </DatabasePermission>
+            </DatabasePermissions>
+        </Database>
+    </ObjectDefinition>
+</Create>
+
