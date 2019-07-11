@@ -16,7 +16,11 @@ CREATE TABLE [dbo].[Fact_XF_Usage_tbl](
 	[SK_Account] [int] NULL,
 	[SK_Package] [int] NULL,
 	[AdjustedHits] [float] NULL,
-	[SK_UserPackage] [int] NULL
+	[SK_UserPackage] [int] NULL,
+ CONSTRAINT [PK_Fact_XF_Usage_tbl] PRIMARY KEY CLUSTERED 
+(
+	[XFUsageId] ASC
+)
 ) ON [PRIMARY]
 
 GO

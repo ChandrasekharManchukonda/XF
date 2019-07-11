@@ -10,6 +10,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
+IF OBJECT_ID('Dim_XF_UserPackageStatus_tbl') IS NULL
 CREATE TABLE [dbo].[Dim_XF_UserPackageStatus_tbl](
 	[SK_UserPackage] [int] IDENTITY(1,1) NOT NULL,
 	[SK_User] [int] NULL,
