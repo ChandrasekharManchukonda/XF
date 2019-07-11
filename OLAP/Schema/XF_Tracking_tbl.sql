@@ -7,7 +7,7 @@ GO
 
 SET QUOTED_IDENTIFIER ON
 GO
-
+IF OBJECT_ID('XF_Tracking_tbl') IS NULL
 CREATE TABLE [dbo].[XF_Tracking_tbl](
 	[TableName] [nvarchar](100) NULL,
 	[LastTrackingDate] [datetime] NULL,
