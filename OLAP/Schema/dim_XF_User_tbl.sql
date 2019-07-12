@@ -1,7 +1,7 @@
 USE [OLAP]
 GO
 
-/****** Object:  Table [dbo].[dim_XF_User_tbl]    Script Date: 6/16/2019 4:45:57 AM ******/
+/****** Object:  Table [dbo].[dim_XF_User_tbl]     ******/
 SET ANSI_NULLS ON
 GO
 
