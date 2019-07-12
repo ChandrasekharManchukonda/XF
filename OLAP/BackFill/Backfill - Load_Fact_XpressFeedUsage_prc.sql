@@ -1,3 +1,6 @@
+USE OLAP
+GO
+
 -- Load 2018-01-01 to 2019-06-30
 
 DECLARE @Start_EDXLogId INT
